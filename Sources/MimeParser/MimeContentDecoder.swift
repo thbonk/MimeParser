@@ -28,7 +28,7 @@ struct MimeContentDecoder {
         case .sevenBit: fallthrough
         case .eightBit: fallthrough
         case .binary:
-            guard let decoded = raw.data(using: .ascii) else { throw Error.decodingFailed }
+            guard let decoded = raw.data(using: raw.fastestEncoding) else { throw Error.decodingFailed }
             return decoded
         case .quotedPrintable:
             return try raw.decodedQuotedPrintable()

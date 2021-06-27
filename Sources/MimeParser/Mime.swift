@@ -203,12 +203,12 @@ public struct MimeBody : Equatable {
                 let nsEncoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
                 return String.Encoding(rawValue: nsEncoding)
             }
-       #else
+        #else
             // this as workaround for CFStringConvertIANACharSetNameToEncoding
             // since it is not exposed in SwiftFoundation until it got fixed
             let stringEncoding: String.Encoding? = charset.flatMap { charset in
-		    let charset = charset.lowercased()
-		    return ianaTable.filter({ return $0.value == charset }).first?.key ?? .utf8
+		          let charset = charset.lowercased()
+		          return ianaTable.filter({ return $0.value == charset }).first?.key ?? .utf8
             }
         #endif
         
